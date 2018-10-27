@@ -1,0 +1,3 @@
+[submodule "protobuf"]
+	path = protobuf
+	url = ../../cluster/protobuf-gRPC.git
