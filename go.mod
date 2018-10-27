@@ -3,14 +3,22 @@ module git.zjuqsc.com/miniprogram/wechat-backend
 require (
 	github.com/BurntSushi/toml v0.3.1 // indirect
 	github.com/StackExchange/wmi v0.0.0-20180725035823-b12b22c5341f // indirect
+	github.com/denisenkom/go-mssqldb v0.0.0-20181014144952-4e0d7dc8888f // indirect
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
+	github.com/erikstmartin/go-testdb v0.0.0-20160219214506-8d10e4a1bae5 // indirect
 	github.com/fsnotify/fsnotify v1.4.7
 	github.com/gin-contrib/sse v0.0.0-20170109093832-22d885f9ecc7 // indirect
 	github.com/gin-gonic/gin v1.3.0
 	github.com/go-ole/go-ole v1.2.1 // indirect
+	github.com/go-sql-driver/mysql v1.4.0 // indirect
+	github.com/jinzhu/gorm v1.9.1
+	github.com/jinzhu/inflection v0.0.0-20180308033659-04140366298a // indirect
+	github.com/jinzhu/now v0.0.0-20180511015916-ed742868f2ae // indirect
 	github.com/json-iterator/go v1.1.5 // indirect
 	github.com/lexkong/log v0.0.0-20180607165131-972f9cd951fc
+	github.com/lib/pq v1.0.0 // indirect
 	github.com/mattn/go-isatty v0.0.4 // indirect
+	github.com/mattn/go-sqlite3 v1.10.0 // indirect
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
 	github.com/modern-go/reflect2 v1.0.1 // indirect
 	github.com/onsi/gomega v1.4.2 // indirect

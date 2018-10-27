@@ -3,6 +3,7 @@ package main
 import (
 	"errors"
 	"git.zjuqsc.com/miniprogram/wechat-backend/config"
+	"git.zjuqsc.com/miniprogram/wechat-backend/model"
 	"git.zjuqsc.com/miniprogram/wechat-backend/router"
 	"github.com/gin-gonic/gin"
 	"github.com/lexkong/log"
@@ -38,6 +39,9 @@ func main() {
 	if err := config.Init(""); err != nil {
 		panic(err)
 	}
+	// Init for database
+	model.DB.Init()
+	defer model.DB.Close()
 	// Settings for Gin
 	fgin, _ := os.Create("gin.log")
 	gin.DefaultWriter = io.MultiWriter(fgin, os.Stdout)
