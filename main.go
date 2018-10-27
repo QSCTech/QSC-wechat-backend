@@ -5,6 +5,7 @@ import (
 	"git.zjuqsc.com/miniprogram/wechat-backend/config"
 	"git.zjuqsc.com/miniprogram/wechat-backend/model"
 	"git.zjuqsc.com/miniprogram/wechat-backend/router"
+	"git.zjuqsc.com/miniprogram/wechat-backend/rpc"
 	"github.com/gin-gonic/gin"
 	"github.com/lexkong/log"
 	"github.com/spf13/viper"
@@ -39,13 +40,20 @@ func main() {
 	if err := config.Init(""); err != nil {
 		panic(err)
 	}
+
 	// Init for database
 	model.DB.Init()
 	defer model.DB.Close()
+
+	// Init for gRPC client
+	rpc.GRPCClient.Init()
+	defer rpc.GRPCClient.Close()
+
 	// Settings for Gin
 	fgin, _ := os.Create("gin.log")
 	gin.DefaultWriter = io.MultiWriter(fgin, os.Stdout)
 	gin.SetMode(viper.GetString("RUNMODE"))
+
 	// Create Gin instance
 	g := gin.Default()
 
@@ -54,7 +62,10 @@ func main() {
 
 	// Health checking
 	go healthChecking()
+	// gRPC checking
+	go rpc.PingRPCServer()
 
+	// Start listening
 	log.Infof("Server is listening on %s", viper.GetString("addr"))
 	g.Run(viper.GetString("addr"))
 }
