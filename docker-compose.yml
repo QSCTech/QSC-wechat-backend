@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  QSC-Wechat-Backend:
+    image: ${IMAGE_TAG}-${CI_COMMIT_SHA}
+    networks:
+      - traefik_net
+      - default
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      labels:
+        - "traefik.tags=http"
+        - "traefik.port=8080"
+        - "traefik.protocol=http"
+        - "traefik.docker.network=traefik_net"
+        - "traefik.backend=QSC-Wechat-Backend"
+        #- "traefik.frontend.rule=Host:intl.rpc.zjuqsc.com"
+        - "traefik.frontend.rule=Host:wechat.zjuqsc.com"
+networks:
+  traefik_net:
+    external: true
