@@ -27,6 +27,10 @@ var (
 	ErrUUID				= &Errno{Code: 20015, Message: "UUID generates fail."}
 	ErrDecrypt      	= &Errno{Code: 20016, Message: "Decrypt error."}
 	ErrSecret      		= &Errno{Code: 20017, Message: "Secret Error."}
+	ErrWechat			= &Errno{Code: 20018, Message: "Wechat server error."}
+	ErrNoBindingUser	= &Errno{Code: 20019, Message: "No binding user with cur openID."}
+	ErrGetStudent		= &Errno{Code: 20019, Message: "Fail to get student info."}
+	ErrDeBind			= &Errno{Code: 20020, Message: "Fail to debind last user."}
 
 
 	// user errors
