@@ -3,6 +3,7 @@ package router
 import (
 	"git.zjuqsc.com/miniprogram/wechat-backend/api/login"
 	"git.zjuqsc.com/miniprogram/wechat-backend/api/sd"
+	"git.zjuqsc.com/miniprogram/wechat-backend/api/user"
 	"git.zjuqsc.com/miniprogram/wechat-backend/router/middleware"
 	"github.com/gin-gonic/gin"
 	"net/http"
@@ -19,10 +20,16 @@ func Load(g *gin.Engine, mw ...gin.HandlerFunc) *gin.Engine {
 		c.JSON(http.StatusNotFound, gin.H{"msg": "Error API not found"})
 	})
 
-	auth := g.Group("/auth")
+	authGroup := g.Group("/auth")
 	{
-		auth.POST("/login", login.Login)
-		auth.POST("/bind", login.Bind)
+		authGroup.POST("/login", login.Login)
+		authGroup.POST("/bind", login.Bind)
+	}
+
+	userGroup := g.Group("/user")
+	userGroup.Use(middleware.JWTMiddleware())
+	{
+		userGroup.GET("/info", user.Info)
 	}
 
 	svcd := g.Group("/sd")
