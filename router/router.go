@@ -2,6 +2,7 @@ package router
 
 import (
 	"git.zjuqsc.com/miniprogram/wechat-backend/api/login"
+	"git.zjuqsc.com/miniprogram/wechat-backend/api/schedule"
 	"git.zjuqsc.com/miniprogram/wechat-backend/api/sd"
 	"git.zjuqsc.com/miniprogram/wechat-backend/api/user"
 	"git.zjuqsc.com/miniprogram/wechat-backend/router/middleware"
@@ -30,6 +31,12 @@ func Load(g *gin.Engine, mw ...gin.HandlerFunc) *gin.Engine {
 	userGroup.Use(middleware.JWTMiddleware())
 	{
 		userGroup.GET("/info", user.Info)
+	}
+
+	scheduleGroup := g.Group("/schedule")
+	scheduleGroup.Use(middleware.JWTMiddleware())
+	{
+		scheduleGroup.GET("", schedule.Course)
 	}
 
 	svcd := g.Group("/sd")

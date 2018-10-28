@@ -31,6 +31,7 @@ var (
 	ErrNoBindingUser	= &Errno{Code: 20019, Message: "No binding user with cur openID."}
 	ErrGetStudent		= &Errno{Code: 20019, Message: "Fail to get student info."}
 	ErrDeBind			= &Errno{Code: 20020, Message: "Fail to debind last user."}
+	ErrRPC				= &Errno{Code: 20021, Message: "gRPC call failed."}
 
 
 	// user errors
