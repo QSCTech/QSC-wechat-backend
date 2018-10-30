@@ -9,9 +9,10 @@ type UserModel struct {
 	CreatedAt time.Time
 	UpdatedAt time.Time
 	ZJUid string `json:"ZJUid" gorm:"not null;unique_index;column:ZJUid"`
-	INTLid string `json:"INTLid"`
 	Password string `json:"password"`	// Warning
+	INTLid string `json:"INTLid"`
 	PasswordINTL string `json:"password_intl"`	// Warning
+	PasswordPRINT string `json:"password_print"`
 	WechatOpenID string `json:"wechat_open_id" gorm:"unique_index"`
 	WechatSessionID string `json:"wechat_session_id"`
 }

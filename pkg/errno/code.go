@@ -32,6 +32,8 @@ var (
 	ErrGetStudent		= &Errno{Code: 20019, Message: "Fail to get student info."}
 	ErrDeBind			= &Errno{Code: 20020, Message: "Fail to debind last user."}
 	ErrRPC				= &Errno{Code: 20021, Message: "gRPC call failed."}
+	ErrPassword			= &Errno{Code: 20022, Message: "Password not correct."}
+
 
 
 	// user errors
