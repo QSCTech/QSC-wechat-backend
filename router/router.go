@@ -4,6 +4,7 @@ import (
 	"git.zjuqsc.com/miniprogram/wechat-backend/api/account"
 	"git.zjuqsc.com/miniprogram/wechat-backend/api/ecard"
 	"git.zjuqsc.com/miniprogram/wechat-backend/api/login"
+	"git.zjuqsc.com/miniprogram/wechat-backend/api/onlineprint"
 	"git.zjuqsc.com/miniprogram/wechat-backend/api/schedule"
 	"git.zjuqsc.com/miniprogram/wechat-backend/api/sd"
 	"git.zjuqsc.com/miniprogram/wechat-backend/api/user"
@@ -46,7 +47,7 @@ func Load(g *gin.Engine, mw ...gin.HandlerFunc) *gin.Engine {
 	printGroup := g.Group("/print")
 	printGroup.Use(middleware.JWTMiddleware())
 	{
-		//printGroup.POST("/", printINTL.print)
+		printGroup.POST("", onlineprint.Print)
 	}
 
 	scheduleGroup := g.Group("/schedule")

@@ -48,6 +48,7 @@ var (
 	ErrTypeNotMatch		= &Errno{Code: 20402, Message: "Error type not match."}
 	ErrAnsNotMatch		= &Errno{Code: 20404, Message: "Some Ans not match."}
 	TooMuchIntent		= &Errno{Code: 20405, Message: "Too much intents."}
+	ErrPrint			= &Errno{Code: 20406, Message: "Print error."}
 
 	ErrInterviewFull		= &Errno{Code: 20501, Message: "Interview is full"}
 )
