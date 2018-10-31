@@ -1,4 +1,4 @@
-package printINTL
+package account
 
 import (
 	"git.zjuqsc.com/miniprogram/wechat-backend/api"
@@ -9,11 +9,11 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-type bindRequest struct {
+type bindRequestPrint struct {
 	Password string `json:"password"`
 }
-func Bind(c *gin.Context) {
-	req := bindRequest{}
+func PrintBind(c *gin.Context) {
+	req := bindRequestPrint{}
 	if err := c.ShouldBindJSON(&req); err != nil {
 		api.Res(c, errno.ErrBind, err.Error())
 		return
@@ -37,6 +37,8 @@ func Bind(c *gin.Context) {
 		api.Res(c, errno.ErrEncrypt, err.Error())
 		return
 	}
+
+	user.PRINTid = ZJUid
 	user.PasswordPRINT = passEncrypted
 	if err := user.Save(); err != nil {
 		api.Res(c, errno.ErrBind, err.Error())

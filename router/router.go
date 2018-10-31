@@ -1,9 +1,9 @@
 package router
 
 import (
+	"git.zjuqsc.com/miniprogram/wechat-backend/api/account"
 	"git.zjuqsc.com/miniprogram/wechat-backend/api/ecard"
 	"git.zjuqsc.com/miniprogram/wechat-backend/api/login"
-	"git.zjuqsc.com/miniprogram/wechat-backend/api/printINTL"
 	"git.zjuqsc.com/miniprogram/wechat-backend/api/schedule"
 	"git.zjuqsc.com/miniprogram/wechat-backend/api/sd"
 	"git.zjuqsc.com/miniprogram/wechat-backend/api/user"
@@ -29,6 +29,14 @@ func Load(g *gin.Engine, mw ...gin.HandlerFunc) *gin.Engine {
 		authGroup.POST("/bind", login.Bind)
 	}
 
+	accountGroup := g.Group("/account")
+	accountGroup.Use(middleware.JWTMiddleware())
+	{
+		accountGroup.GET("", account.GetBindShip)
+		accountGroup.POST("/print", account.PrintBind)
+		accountGroup.POST("/intl", account.IntlBind)
+	}
+
 	userGroup := g.Group("/user")
 	userGroup.Use(middleware.JWTMiddleware())
 	{
@@ -38,7 +46,7 @@ func Load(g *gin.Engine, mw ...gin.HandlerFunc) *gin.Engine {
 	printGroup := g.Group("/print")
 	printGroup.Use(middleware.JWTMiddleware())
 	{
-		printGroup.POST("/bind", printINTL.Bind)
+		//printGroup.POST("/", printINTL.print)
 	}
 
 	scheduleGroup := g.Group("/schedule")
