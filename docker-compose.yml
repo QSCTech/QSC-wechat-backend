@@ -24,6 +24,6 @@ services:
 networks:
   traefik_net:
     external: true
-#configs:
-#  wechat_backend_config:
-#    file:
+configs:
+  wechat-backend-config:
+    external: true
