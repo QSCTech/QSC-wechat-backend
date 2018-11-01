@@ -3,6 +3,9 @@ version: '3'
 services:
   QSC-Wechat-Backend:
     image: ${IMAGE_TAG}-${CI_COMMIT_SHA}
+    configs:
+      - source: wechat-config
+        target: /usr/src/app/conf/config.yaml
     networks:
       - traefik_net
       - default
@@ -18,12 +21,9 @@ services:
         - "traefik.backend=QSC-Wechat-Backend"
         #- "traefik.frontend.rule=Host:intl.rpc.zjuqsc.com"
         - "traefik.frontend.rule=Host:wechat.zjuqsc.com"
-    configs:
-      - source: wechat-backend-config
-        target: /usr/src/app/conf/config.yaml
+configs:
+  wechat-config:
+    external: true
 networks:
   traefik_net:
-    external: true
-configs:
-  wechat-backend-config:
     external: true
