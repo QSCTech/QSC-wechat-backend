@@ -3,7 +3,7 @@
 
 gin.log
 
-#conf/config.yaml
+conf/config.yaml
 
 log/*
 

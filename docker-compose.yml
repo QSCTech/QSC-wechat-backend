@@ -18,6 +18,12 @@ services:
         - "traefik.backend=QSC-Wechat-Backend"
         #- "traefik.frontend.rule=Host:intl.rpc.zjuqsc.com"
         - "traefik.frontend.rule=Host:wechat.zjuqsc.com"
+    configs:
+      - source: wechat-backend-config
+        target: /usr/src/app/conf/config.yaml
 networks:
   traefik_net:
     external: true
+#configs:
+#  wechat_backend_config:
+#    file:
