@@ -2,6 +2,7 @@ package rpc
 
 import (
 	"context"
+	"git.zjuqsc.com/miniprogram/wechat-backend/protobuf/INTLUtils"
 	"git.zjuqsc.com/miniprogram/wechat-backend/protobuf/ZJUPassport"
 	"git.zjuqsc.com/miniprogram/wechat-backend/protobuf/ZJUIntl"
 	"github.com/lexkong/log"
@@ -13,6 +14,7 @@ type gRPCClient struct {
 	Connection *grpc.ClientConn
 	Passport ZJUPassport.PassportServiceClient
 	Intl	ZJUIntl.IntlServiceClient
+	IntlBus	INTLUtils.BusServiceClient
 }
 func (client *gRPCClient) Init()  {
 	conn, err := grpc.Dial(viper.GetString("grpc_addr"), grpc.WithInsecure())
@@ -22,8 +24,10 @@ func (client *gRPCClient) Init()  {
 	client.Connection = conn
 	clientPassport := ZJUPassport.NewPassportServiceClient(conn)
 	clientIntl := ZJUIntl.NewIntlServiceClient(conn)
+	clientIntlBus := INTLUtils.NewBusServiceClient(conn)
 	client.Passport = clientPassport
 	client.Intl = clientIntl
+	client.IntlBus = clientIntlBus
 	log.Info("gRPC service connect successfully.")
 }
 func (client *gRPCClient) Close()  {

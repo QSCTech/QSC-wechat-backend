@@ -3,6 +3,7 @@ package router
 import (
 	"git.zjuqsc.com/miniprogram/wechat-backend/api/account"
 	"git.zjuqsc.com/miniprogram/wechat-backend/api/ecard"
+	"git.zjuqsc.com/miniprogram/wechat-backend/api/intlbus"
 	"git.zjuqsc.com/miniprogram/wechat-backend/api/login"
 	"git.zjuqsc.com/miniprogram/wechat-backend/api/onlineprint"
 	"git.zjuqsc.com/miniprogram/wechat-backend/api/schedule"
@@ -54,6 +55,16 @@ func Load(g *gin.Engine, mw ...gin.HandlerFunc) *gin.Engine {
 	scheduleGroup.Use(middleware.JWTMiddleware())
 	{
 		scheduleGroup.GET("", schedule.Course)
+	}
+
+	intlBusGroup := g.Group("/intlbus")
+	intlBusGroup.Use(middleware.JWTMiddleware())
+	{
+		intlBusGroup.GET("/bus/:date", intlbus.GetBusList)
+		intlBusGroup.GET("/book", intlbus.GetBookList)
+		intlBusGroup.PATCH("/book", intlbus.DelBook)
+		intlBusGroup.GET("/plist", intlbus.GetPlist)
+		intlBusGroup.POST("/reserve", intlbus.ReserveBus)
 	}
 
 	ecardGroup := g.Group("/ecard")

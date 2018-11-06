@@ -50,5 +50,9 @@ var (
 	TooMuchIntent		= &Errno{Code: 20405, Message: "Too much intents."}
 	ErrPrint			= &Errno{Code: 20406, Message: "Print error."}
 
-	ErrInterviewFull		= &Errno{Code: 20501, Message: "Interview is full"}
+	ErrInterviewFull	= &Errno{Code: 20501, Message: "Interview is full"}
+
+	ErrBusGet			= &Errno{Code: 20601, Message: "Error get bus info"}
+	ErrBusPatch			= &Errno{Code: 20602, Message: "Error patch bus"}
+	ErrDateFormat		= &Errno{Code: 20603, Message: "Error date format"}
 )
