@@ -55,4 +55,7 @@ var (
 	ErrBusGet			= &Errno{Code: 20601, Message: "Error get bus info"}
 	ErrBusPatch			= &Errno{Code: 20602, Message: "Error patch bus"}
 	ErrDateFormat		= &Errno{Code: 20603, Message: "Error date format"}
+
+	ErrBBAlert		= &Errno{Code: 20701, Message: "Error BB Alert Fetch"}
+	ErrBBFile		= &Errno{Code: 20702, Message: "Error BB File Get"}
 )

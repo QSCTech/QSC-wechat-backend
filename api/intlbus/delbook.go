@@ -11,7 +11,7 @@ import (
 )
 
 type delbookRequest struct {
-	Bookid int32 `json:"bookid"`
+	Bookid int32 `json:"bookid" binding:"required"`
 }
 func DelBook(c *gin.Context) {
 	ZJUid := c.GetString("ZJUid")

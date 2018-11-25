@@ -11,8 +11,8 @@ import (
 )
 
 type reserveRequest struct {
-	Classid int32 `json:"classid"`
-	Plist string `json:"plist"`
+	Classid int32 `json:"classid" binding:"required"`
+	Plist string `json:"plist" binding:"required"`
 }
 func ReserveBus(c *gin.Context) {
 	ZJUid := c.GetString("ZJUid")

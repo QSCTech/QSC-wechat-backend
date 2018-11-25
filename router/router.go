@@ -2,6 +2,7 @@ package router
 
 import (
 	"git.zjuqsc.com/miniprogram/wechat-backend/api/account"
+	"git.zjuqsc.com/miniprogram/wechat-backend/api/blackboard"
 	"git.zjuqsc.com/miniprogram/wechat-backend/api/ecard"
 	"git.zjuqsc.com/miniprogram/wechat-backend/api/intlbus"
 	"git.zjuqsc.com/miniprogram/wechat-backend/api/login"
@@ -45,10 +46,17 @@ func Load(g *gin.Engine, mw ...gin.HandlerFunc) *gin.Engine {
 		userGroup.GET("/info", user.Info)
 	}
 
+	bbGroup := g.Group("/blackboard")
+	bbGroup.Use(middleware.JWTMiddleware())
+	{
+		bbGroup.GET("/alert", blackboard.GetAlert)
+	}
+
 	printGroup := g.Group("/print")
 	printGroup.Use(middleware.JWTMiddleware())
 	{
 		printGroup.POST("", onlineprint.Print)
+		printGroup.POST("/bb", onlineprint.PrintBB)
 	}
 
 	scheduleGroup := g.Group("/schedule")

@@ -6,6 +6,7 @@ import (
 	"git.zjuqsc.com/miniprogram/wechat-backend/model"
 	"git.zjuqsc.com/miniprogram/wechat-backend/router"
 	"git.zjuqsc.com/miniprogram/wechat-backend/rpc"
+	"git.zjuqsc.com/miniprogram/wechat-backend/service"
 	"github.com/gin-gonic/gin"
 	"github.com/lexkong/log"
 	"github.com/spf13/viper"
@@ -48,6 +49,9 @@ func main() {
 	// Init for gRPC client
 	rpc.GRPCClient.Init()
 	defer rpc.GRPCClient.Close()
+
+	// Init for Minio client
+	service.MinioInit()
 
 	// Settings for Gin
 	fgin, _ := os.Create("gin.log")

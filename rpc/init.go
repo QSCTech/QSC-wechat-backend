@@ -14,6 +14,7 @@ type gRPCClient struct {
 	Connection *grpc.ClientConn
 	Passport ZJUPassport.PassportServiceClient
 	Intl	ZJUIntl.IntlServiceClient
+	BlackBoard ZJUIntl.BlackBoardServiceClient
 	IntlBus	INTLUtils.BusServiceClient
 }
 func (client *gRPCClient) Init()  {
@@ -24,9 +25,11 @@ func (client *gRPCClient) Init()  {
 	client.Connection = conn
 	clientPassport := ZJUPassport.NewPassportServiceClient(conn)
 	clientIntl := ZJUIntl.NewIntlServiceClient(conn)
+	clientBlackBoard := ZJUIntl.NewBlackBoardServiceClient(conn)
 	clientIntlBus := INTLUtils.NewBusServiceClient(conn)
 	client.Passport = clientPassport
 	client.Intl = clientIntl
+	client.BlackBoard = clientBlackBoard
 	client.IntlBus = clientIntlBus
 	log.Info("gRPC service connect successfully.")
 }
