@@ -56,6 +56,9 @@ func Load(g *gin.Engine, mw ...gin.HandlerFunc) *gin.Engine {
 	printGroup.Use(middleware.JWTMiddleware())
 	{
 		printGroup.POST("", onlineprint.Print)
+		printGroup.GET("/job", onlineprint.GetJobList)
+		printGroup.PATCH("/job", onlineprint.DelJob)
+		printGroup.GET("/station", onlineprint.GetStationList)
 		printGroup.POST("/bb", onlineprint.PrintBB)
 	}
 
