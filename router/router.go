@@ -57,7 +57,7 @@ func Load(g *gin.Engine, mw ...gin.HandlerFunc) *gin.Engine {
 	{
 		printGroup.POST("", onlineprint.Print)
 		printGroup.GET("/job", onlineprint.GetJobList)
-		printGroup.PATCH("/job", onlineprint.DelJob)
+		printGroup.DELETE("/job", onlineprint.DelJob)
 		printGroup.GET("/station", onlineprint.GetStationList)
 		printGroup.POST("/bb", onlineprint.PrintBB)
 	}
@@ -73,7 +73,7 @@ func Load(g *gin.Engine, mw ...gin.HandlerFunc) *gin.Engine {
 	{
 		intlBusGroup.GET("/bus/:date", intlbus.GetBusList)
 		intlBusGroup.GET("/book", intlbus.GetBookList)
-		intlBusGroup.PATCH("/book", intlbus.DelBook)
+		intlBusGroup.DELETE("/book", intlbus.DelBook)
 		intlBusGroup.GET("/plist", intlbus.GetPlist)
 		intlBusGroup.POST("/reserve", intlbus.ReserveBus)
 	}
