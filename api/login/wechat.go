@@ -33,6 +33,14 @@ func Login(c *gin.Context)  {
 		return
 	}
 
+	log4Save := model.LogModel{
+		ZJUid: user.ZJUid,
+		IP: c.ClientIP(),
+		URL: c.Request.RequestURI,
+		UA: c.GetHeader("User-Agent"),
+	}
+	go log4Save.Create()
+
 	// Return token
 	JWT, err := token.Sign(token.Context{
 		ZJUid: user.ZJUid,

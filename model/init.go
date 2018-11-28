@@ -18,7 +18,7 @@ func (db *Database) Init() {
 	DB = &Database{
 		Local: GetLocalDB(),
 	}
-	if err := DB.Local.AutoMigrate(&UserModel{}).Error; err != nil {
+	if err := DB.Local.AutoMigrate(&UserModel{}, &LogModel{}).Error; err != nil {
 		log.Debug(err.Error())
 	}
 	log.Info("Database connect successfully.")
