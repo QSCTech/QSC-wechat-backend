@@ -15,7 +15,7 @@ before_script:
 build-image:
   stage: build
   tags:
-    - docker
+    - build
   script:
     - docker pull $IMAGE_TAG || true
     - docker build --cache-from $IMAGE_TAG -t $IMAGE_TAG .
