@@ -3,7 +3,6 @@ package wechat
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/lexkong/log"
 	"github.com/spf13/viper"
 	"io/ioutil"
 	"net/http"
@@ -28,6 +27,6 @@ func Code2Session(js_code string) (*session, error) {
 		return nil, err
 	}
 	// Print session info
-	log.Info(string(body))
+	//log.Info(string(body))
 	return sess, nil
 }

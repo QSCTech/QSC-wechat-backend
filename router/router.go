@@ -4,6 +4,7 @@ import (
 	"git.zjuqsc.com/miniprogram/wechat-backend/api/account"
 	"git.zjuqsc.com/miniprogram/wechat-backend/api/blackboard"
 	"git.zjuqsc.com/miniprogram/wechat-backend/api/ecard"
+	"git.zjuqsc.com/miniprogram/wechat-backend/api/exam"
 	"git.zjuqsc.com/miniprogram/wechat-backend/api/intlbus"
 	"git.zjuqsc.com/miniprogram/wechat-backend/api/login"
 	"git.zjuqsc.com/miniprogram/wechat-backend/api/onlineprint"
@@ -44,6 +45,12 @@ func Load(g *gin.Engine, mw ...gin.HandlerFunc) *gin.Engine {
 	userGroup.Use(middleware.JWTMiddleware())
 	{
 		userGroup.GET("/info", user.Info)
+	}
+
+	examGroup := g.Group("/exam")
+	examGroup.Use(middleware.JWTMiddleware())
+	{
+		examGroup.GET("", exam.GetExam)
 	}
 
 	bbGroup := g.Group("/blackboard")
