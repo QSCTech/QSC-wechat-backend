@@ -6,6 +6,7 @@ Gin, Gorm, Vendor, JWT, Viper, gRPC
 
 ## gRPC Service
 > Since some project/code is not suitable to be public, we still keep them in internal version control system.
+
 We have public the following project(s):
 - [ZJUintl-gRPC](https://github.com/QSCTech/ZJUintl-gRPC)
 
