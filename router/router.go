@@ -5,6 +5,7 @@ import (
 	"git.zjuqsc.com/miniprogram/wechat-backend/api/blackboard"
 	"git.zjuqsc.com/miniprogram/wechat-backend/api/ecard"
 	"git.zjuqsc.com/miniprogram/wechat-backend/api/exam"
+	"git.zjuqsc.com/miniprogram/wechat-backend/api/gpa"
 	"git.zjuqsc.com/miniprogram/wechat-backend/api/intlbus"
 	"git.zjuqsc.com/miniprogram/wechat-backend/api/login"
 	"git.zjuqsc.com/miniprogram/wechat-backend/api/onlineprint"
@@ -51,6 +52,13 @@ func Load(g *gin.Engine, mw ...gin.HandlerFunc) *gin.Engine {
 	examGroup.Use(middleware.JWTMiddleware())
 	{
 		examGroup.GET("", exam.GetExam)
+	}
+
+	gpaGroup := g.Group("/gpa")
+	gpaGroup.Use(middleware.JWTMiddleware())
+	{
+		gpaGroup.GET("", gpa.GetGPA)
+		gpaGroup.GET("term", gpa.GetTerm)
 	}
 
 	bbGroup := g.Group("/blackboard")
